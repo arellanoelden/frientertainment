@@ -87,6 +87,11 @@ export class MyAppStack extends cdk.Stack {
     new apigateway.LambdaRestApi(this, "ApiGateway", {
       handler: apiFunction,
       proxy: true,
+      defaultCorsPreflightOptions: {
+        allowOrigins: apigateway.Cors.ALL_ORIGINS,
+        allowMethods: apigateway.Cors.ALL_METHODS,
+        allowHeaders: apigateway.Cors.DEFAULT_HEADERS,
+      },
     });
   }
 }
